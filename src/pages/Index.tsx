@@ -3,108 +3,178 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CarCard from '@/components/cars/CarCard';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { mockCars } from '@/data/cars';
 import { 
   Car, 
   Shield, 
-  DollarSign, 
   Users,
-  ArrowRight
+  Search,
+  MapPin,
+  Phone,
+  Mail
 } from 'lucide-react';
+import { useState } from 'react';
 
 const Index = () => {
-  const featuredCars = mockCars.filter(car => car.isFeatured).slice(0, 3);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [sortBy, setSortBy] = useState('default');
+
+  // Filter cars based on search and category
+  const filteredCars = mockCars.filter(car => {
+    const matchesSearch = car.make.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         car.model.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'all' || 
+                           (selectedCategory === 'featured' && car.isFeatured) ||
+                           (selectedCategory === 'sedan' && car.bodyType === 'Sedan') ||
+                           (selectedCategory === 'suv' && car.bodyType === 'SUV') ||
+                           (selectedCategory === 'electric' && car.fuelType === 'Electric');
+    
+    return matchesSearch && matchesCategory;
+  });
+
+  // Sort cars
+  const sortedCars = [...filteredCars].sort((a, b) => {
+    switch (sortBy) {
+      case 'price-low':
+        return a.price - b.price;
+      case 'price-high':
+        return b.price - a.price;
+      case 'year-new':
+        return b.year - a.year;
+      case 'year-old':
+        return a.year - b.year;
+      default:
+        return 0;
+    }
+  });
+
+  const categories = [
+    { id: 'all', label: 'All Cars', icon: Car },
+    { id: 'featured', label: 'Featured', icon: Shield },
+    { id: 'sedan', label: 'Sedan', icon: Car },
+    { id: 'suv', label: 'SUV', icon: Car },
+    { id: 'electric', label: 'Electric', icon: Car }
+  ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary/10 via-accent/5 to-background py-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center space-y-8">
-              <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border-primary/20">
-                Premium Vehicle Solutions
+        {/* Hero Section with Background */}
+        <section className="relative py-24 bg-gradient-to-br from-primary/20 via-accent/10 to-background overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/lovable-uploads/c77209e3-adcf-4188-a7ec-c435b42b5712.png')] bg-cover bg-center opacity-10" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto text-center space-y-8">
+              <Badge variant="secondary" className="mb-4 bg-primary/20 text-primary border-primary/30 backdrop-blur-sm">
+                Best Car for Rent
               </Badge>
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-                Drive Your
-                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Dreams</span>
+                Premium Car
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Rental</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Experience excellence with our curated selection of premium vehicles. 
-                Quality guaranteed, service unmatched.
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Discover our premium collection of vehicles. Quality guaranteed, service unmatched.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-                <Button size="lg" className="text-lg px-10 py-6 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90">
-                  Browse Vehicles <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button variant="outline" size="lg" className="text-lg px-10 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  Schedule Visit
-                </Button>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* Quick Stats */}
-        <section className="py-16 bg-muted/30">
+        {/* Search and Filter Section */}
+        <section className="py-8 bg-card/50 backdrop-blur-sm border-b sticky top-0 z-40">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-              <div className="text-center space-y-2">
-                <Car className="h-8 w-8 text-primary mx-auto" />
-                <div className="text-3xl font-bold">200+</div>
-                <div className="text-sm text-muted-foreground">Premium Cars</div>
+            <div className="flex flex-col lg:flex-row gap-6 items-center">
+              {/* Search Bar */}
+              <div className="relative flex-1 max-w-md">
+                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search cars..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 bg-background/80 backdrop-blur-sm"
+                />
               </div>
-              <div className="text-center space-y-2">
-                <Users className="h-8 w-8 text-primary mx-auto" />
-                <div className="text-3xl font-bold">5000+</div>
-                <div className="text-sm text-muted-foreground">Happy Clients</div>
+
+              {/* Categories */}
+              <div className="flex gap-2 flex-wrap justify-center">
+                {categories.map(({ id, label, icon: Icon }) => (
+                  <Button
+                    key={id}
+                    variant={selectedCategory === id ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setSelectedCategory(id)}
+                    className={`backdrop-blur-sm ${
+                      selectedCategory === id 
+                        ? 'bg-primary text-primary-foreground' 
+                        : 'bg-background/80 hover:bg-primary/10'
+                    }`}
+                  >
+                    <Icon className="h-4 w-4 mr-1" />
+                    {label}
+                  </Button>
+                ))}
               </div>
-              <div className="text-center space-y-2">
-                <Shield className="h-8 w-8 text-primary mx-auto" />
-                <div className="text-3xl font-bold">15+</div>
-                <div className="text-sm text-muted-foreground">Years Experience</div>
-              </div>
+
+              {/* Sort */}
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-48 bg-background/80 backdrop-blur-sm">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="default">Default Order</SelectItem>
+                  <SelectItem value="price-low">Price: Low to High</SelectItem>
+                  <SelectItem value="price-high">Price: High to Low</SelectItem>
+                  <SelectItem value="year-new">Year: Newest First</SelectItem>
+                  <SelectItem value="year-old">Year: Oldest First</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </section>
 
-        {/* Featured Cars - Reduced to 3 */}
-        <section className="py-20">
+        {/* Cars Grid */}
+        <section className="py-16 bg-gradient-to-b from-background to-muted/20">
           <div className="container mx-auto px-4">
-            <div className="text-center space-y-4 mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold">Featured Collection</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
-                Handpicked premium vehicles, inspected for excellence.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              {featuredCars.map((car) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {sortedCars.map((car) => (
                 <CarCard key={car.id} car={car} />
               ))}
             </div>
-
-            <div className="text-center">
-              <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                View All Inventory <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
+            
+            {sortedCars.length === 0 && (
+              <div className="text-center py-16">
+                <Car className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2">No cars found</h3>
+                <p className="text-muted-foreground">Try adjusting your search or filters</p>
+              </div>
+            )}
           </div>
         </section>
 
-        {/* Simple CTA */}
-        <section className="py-20 bg-gradient-to-r from-primary to-accent text-primary-foreground">
-          <div className="container mx-auto px-4 text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold">Ready to Drive?</h2>
-            <p className="text-xl opacity-90 max-w-xl mx-auto">
-              Connect with our expert team for personalized service.
-            </p>
-            <Button size="lg" variant="secondary" className="text-lg px-10 py-6">
-              Contact Us Today
-            </Button>
+        {/* Contact Section */}
+        <section className="py-16 bg-gradient-to-r from-primary to-accent text-primary-foreground">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div className="flex flex-col items-center space-y-2">
+                <MapPin className="h-8 w-8" />
+                <h3 className="font-semibold">Location</h3>
+                <p className="text-primary-foreground/90">KABEZA, KIGALI</p>
+              </div>
+              <div className="flex flex-col items-center space-y-2">
+                <Mail className="h-8 w-8" />
+                <h3 className="font-semibold">Email</h3>
+                <p className="text-primary-foreground/90">njpat1991@gmail.com</p>
+              </div>
+              <div className="flex flex-col items-center space-y-2">
+                <Phone className="h-8 w-8" />
+                <h3 className="font-semibold">Phone</h3>
+                <p className="text-primary-foreground/90">+250 788 411 606</p>
+              </div>
+            </div>
           </div>
         </section>
       </main>
