@@ -24,7 +24,7 @@ const CarCard = ({ car, onViewDetails }: CarCardProps) => {
   };
 
   return (
-    <Card className="group overflow-hidden bg-card/60 backdrop-blur-sm border-border/40 hover:bg-card/80 hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
+    <Card className="group overflow-hidden bg-card/70 backdrop-blur-md border-border/30 hover:bg-card/90 hover:shadow-2xl transition-all duration-300 hover:scale-[1.01] focus-within:ring-2 focus-within:ring-primary/50">
       <div className="relative overflow-hidden">
         <img
           src={car.images[0]}
@@ -42,11 +42,6 @@ const CarCard = ({ car, onViewDetails }: CarCardProps) => {
           </Badge>
         )}
         
-        <div className="absolute top-3 right-3">
-          <Badge variant="secondary" className="font-bold text-lg bg-background/90 backdrop-blur-sm">
-            {formatPrice(car.price)}
-          </Badge>
-        </div>
 
         {/* Bottom overlay with car name */}
         <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
@@ -59,49 +54,49 @@ const CarCard = ({ car, onViewDetails }: CarCardProps) => {
         </div>
       </div>
 
-      <CardContent className="p-4 bg-gradient-to-b from-transparent to-muted/20">
-        <div className="grid grid-cols-2 gap-3 text-sm">
+      <CardContent className="p-5 bg-gradient-to-b from-transparent to-muted/10">
+        <div className="grid grid-cols-2 gap-4 text-sm mb-4">
           <div className="flex items-center space-x-2 text-muted-foreground">
-            <Gauge className="h-4 w-4 text-primary" />
-            <span>{formatMileage(car.mileage)} miles</span>
+            <Gauge className="h-4 w-4 text-primary/80" />
+            <span className="font-medium">{formatMileage(car.mileage)} miles</span>
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
-            <Fuel className="h-4 w-4 text-primary" />
-            <span>{car.fuelType}</span>
+            <Fuel className="h-4 w-4 text-primary/80" />
+            <span className="font-medium">{car.fuelType}</span>
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
-            <Calendar className="h-4 w-4 text-primary" />
-            <span>{car.year}</span>
+            <Calendar className="h-4 w-4 text-primary/80" />
+            <span className="font-medium">{car.year}</span>
           </div>
           <div className="flex items-center space-x-2 text-muted-foreground">
-            <Palette className="h-4 w-4 text-primary" />
-            <span>{car.color}</span>
+            <Palette className="h-4 w-4 text-primary/80" />
+            <span className="font-medium">{car.color}</span>
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-1 mt-3">
-          {car.features.slice(0, 2).map((feature, index) => (
-            <Badge key={index} variant="outline" className="text-xs bg-background/50">
+        <div className="flex flex-wrap gap-2 mt-4">
+          {car.features.slice(0, 3).map((feature, index) => (
+            <Badge key={index} variant="outline" className="text-xs bg-background/60 border-primary/20 hover:bg-primary/10 transition-colors">
               {feature}
             </Badge>
           ))}
-          {car.features.length > 2 && (
-            <Badge variant="outline" className="text-xs bg-background/50">
-              +{car.features.length - 2}
+          {car.features.length > 3 && (
+            <Badge variant="outline" className="text-xs bg-background/60 border-primary/20">
+              +{car.features.length - 3} more
             </Badge>
           )}
         </div>
       </CardContent>
 
-      <CardFooter className="p-4 pt-0 flex gap-2">
+      <CardFooter className="p-5 pt-0 flex gap-3">
         <Button 
           variant="outline" 
-          className="flex-1 bg-background/50 backdrop-blur-sm hover:bg-primary hover:text-primary-foreground"
+          className="flex-1 bg-background/60 backdrop-blur-sm hover:bg-primary/90 hover:text-primary-foreground border-primary/30 transition-all duration-200"
           onClick={() => onViewDetails?.(car.id)}
         >
           View Details
         </Button>
-        <Button className="flex-1 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90">
+        <Button className="flex-1 bg-gradient-to-r from-primary/90 to-accent/90 hover:from-primary hover:to-accent transition-all duration-200">
           Contact Us
         </Button>
       </CardFooter>
