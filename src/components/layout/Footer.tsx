@@ -1,21 +1,21 @@
 import { Car, Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
 const Footer = () => {
-  return <footer className="bg-muted/50 border-t">
+  return <footer className="bg-black border-t border-white/10">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Car className="h-6 w-6 text-primary" />
-              <span className="text-lg font-bold">Pacifique Drive Hub</span>
+              <span className="text-lg font-bold text-white">Pacifique Drive Hub</span>
             </div>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-white/70 text-sm">
               Your trusted partner for quality pre-owned vehicles. We've been serving the Pacific region with excellence for over a decade.
             </p>
             <div className="flex space-x-4">
-              <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer" />
-              <Twitter className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer" />
-              <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer" />
+              <Facebook className="h-5 w-5 text-white/70 hover:text-primary cursor-pointer" />
+              <Twitter className="h-5 w-5 text-white/70 hover:text-primary cursor-pointer" />
+              <Instagram className="h-5 w-5 text-white/70 hover:text-primary cursor-pointer" />
             </div>
           </div>
 
@@ -24,8 +24,8 @@ const Footer = () => {
 
           {/* Services */}
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold">Services</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h4 className="text-sm font-semibold text-white">Services</h4>
+            <ul className="space-y-2 text-sm text-white/70">
               <li>Vehicle Sales</li>
               <li>Auto Financing</li>
               <li>Trade-In Appraisal</li>
@@ -36,8 +36,8 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold">Contact Us</h4>
-            <div className="space-y-3 text-sm text-muted-foreground">
+            <h4 className="text-sm font-semibold text-white">Contact Us</h4>
+            <div className="space-y-3 text-sm text-white/70">
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
                 <span>123 Pacific Drive, Ocean City, CA 90210</span>
@@ -54,7 +54,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t pt-8 mt-8 text-center text-sm text-muted-foreground">
+        <div className="border-t border-white/10 pt-8 mt-8 text-center text-sm text-white/50">
           <p>&copy; 2024 Pacifique Drive Hub. All rights reserved.</p>
         </div>
       </div>
