@@ -38,9 +38,7 @@ const About = () => {
         <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center space-y-6">
-              <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                Our Story
-              </Badge>
+              
               <h1 className="text-4xl md:text-6xl font-bold">
                 Excellence in
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Automotive</span>
