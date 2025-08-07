@@ -1,9 +1,6 @@
-
 import { Car, Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
-
 const Footer = () => {
-  return (
-    <footer className="bg-muted/50 border-t">
+  return <footer className="bg-muted/50 border-t">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -23,16 +20,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="text-sm font-semibold">Quick Links</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="/inventory" className="hover:text-foreground transition-colors">View Inventory</a></li>
-              <li><a href="/financing" className="hover:text-foreground transition-colors">Financing</a></li>
-              <li><a href="/trade-in" className="hover:text-foreground transition-colors">Trade-In</a></li>
-              <li><a href="/services" className="hover:text-foreground transition-colors">Services</a></li>
-              <li><a href="/about" className="hover:text-foreground transition-colors">About Us</a></li>
-            </ul>
-          </div>
+          
 
           {/* Services */}
           <div className="space-y-4">
@@ -70,8 +58,6 @@ const Footer = () => {
           <p>&copy; 2024 Pacifique Drive Hub. All rights reserved.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
