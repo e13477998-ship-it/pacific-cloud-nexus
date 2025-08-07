@@ -61,20 +61,47 @@ const Index = () => {
 
       <main className="flex-1">
         {/* Hero Section with Background */}
-        <section className="relative py-24 bg-gradient-to-br from-primary/20 via-accent/10 to-background overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/lovable-uploads/c77209e3-adcf-4188-a7ec-c435b42b5712.png')] bg-cover bg-center opacity-10" />
+        <section className="relative py-24 bg-gradient-to-br from-primary/30 via-accent/20 to-background overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/lovable-uploads/c77209e3-adcf-4188-a7ec-c435b42b5712.png')] bg-cover bg-center opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center space-y-8">
-              <Badge variant="secondary" className="mb-4 bg-primary/20 text-primary border-primary/30 backdrop-blur-sm">
+              <Badge variant="secondary" className="mb-4 bg-card/90 text-primary border-primary/40 backdrop-blur-md shadow-lg">
                 Best Car for Rent
               </Badge>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight drop-shadow-lg">
                 Premium Car
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Rental</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto drop-shadow-sm">
                 Discover our premium collection of vehicles. Quality guaranteed, service unmatched.
               </p>
+              
+              {/* Featured Cars Preview */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-5xl mx-auto">
+                {mockCars.filter(car => car.isFeatured).slice(0, 3).map((car) => (
+                  <div key={car.id} className="bg-card/80 backdrop-blur-md rounded-lg border border-border/50 shadow-xl hover:shadow-2xl transition-all duration-300 group overflow-hidden">
+                    <div className="relative">
+                      <img
+                        src={car.images[0]}
+                        alt={`${car.year} ${car.make} ${car.model}`}
+                        className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      <div className="absolute bottom-2 left-2 right-2 text-white">
+                        <h3 className="font-semibold text-sm">{car.year} {car.make} {car.model}</h3>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="flex gap-2 text-xs text-muted-foreground">
+                        <span>{car.fuelType}</span>
+                        <span>•</span>
+                        <span>{car.color}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
