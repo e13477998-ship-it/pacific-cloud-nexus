@@ -1,4 +1,3 @@
-
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CarCard from '@/components/cars/CarCard';
@@ -7,17 +6,8 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { mockCars } from '@/data/cars';
-import { 
-  Car, 
-  Shield, 
-  Users,
-  Search,
-  MapPin,
-  Phone,
-  Mail
-} from 'lucide-react';
+import { Car, Shield, Users, Search, MapPin, Phone, Mail } from 'lucide-react';
 import { useState } from 'react';
-
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -25,14 +15,8 @@ const Index = () => {
 
   // Filter cars based on search and category
   const filteredCars = mockCars.filter(car => {
-    const matchesSearch = car.make.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         car.model.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || 
-                           (selectedCategory === 'featured' && car.isFeatured) ||
-                           (selectedCategory === 'sedan' && car.bodyType === 'Sedan') ||
-                           (selectedCategory === 'suv' && car.bodyType === 'SUV') ||
-                           (selectedCategory === 'electric' && car.fuelType === 'Electric');
-    
+    const matchesSearch = car.make.toLowerCase().includes(searchTerm.toLowerCase()) || car.model.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'all' || selectedCategory === 'featured' && car.isFeatured || selectedCategory === 'sedan' && car.bodyType === 'Sedan' || selectedCategory === 'suv' && car.bodyType === 'SUV' || selectedCategory === 'electric' && car.fuelType === 'Electric';
     return matchesSearch && matchesCategory;
   });
 
@@ -51,17 +35,28 @@ const Index = () => {
         return 0;
     }
   });
-
-  const categories = [
-    { id: 'all', label: 'All Cars', icon: Car },
-    { id: 'featured', label: 'Featured', icon: Shield },
-    { id: 'sedan', label: 'Sedan', icon: Car },
-    { id: 'suv', label: 'SUV', icon: Car },
-    { id: 'electric', label: 'Electric', icon: Car }
-  ];
-
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
+  const categories = [{
+    id: 'all',
+    label: 'All Cars',
+    icon: Car
+  }, {
+    id: 'featured',
+    label: 'Featured',
+    icon: Shield
+  }, {
+    id: 'sedan',
+    label: 'Sedan',
+    icon: Car
+  }, {
+    id: 'suv',
+    label: 'SUV',
+    icon: Car
+  }, {
+    id: 'electric',
+    label: 'Electric',
+    icon: Car
+  }];
+  return <div className="min-h-screen flex flex-col bg-background">
       <Header />
 
       <main className="flex-1">
@@ -91,39 +86,24 @@ const Index = () => {
               {/* Search Bar */}
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="Search cars..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 bg-background/80 backdrop-blur-sm"
-                />
+                <Input placeholder="Search cars..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)} className="pl-10 bg-background/80 backdrop-blur-sm" />
               </div>
 
               {/* Categories */}
               <div className="flex gap-2 flex-wrap justify-center">
-                {categories.map(({ id, label, icon: Icon }) => (
-                  <Button
-                    key={id}
-                    variant={selectedCategory === id ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedCategory(id)}
-                    className={`backdrop-blur-sm ${
-                      selectedCategory === id 
-                        ? 'bg-primary text-primary-foreground' 
-                        : 'bg-background/80 hover:bg-primary/10'
-                    }`}
-                  >
+                {categories.map(({
+                id,
+                label,
+                icon: Icon
+              }) => <Button key={id} variant={selectedCategory === id ? "default" : "outline"} size="sm" onClick={() => setSelectedCategory(id)} className={`backdrop-blur-sm ${selectedCategory === id ? 'bg-primary text-primary-foreground' : 'bg-background/80 hover:bg-primary/10'}`}>
                     <Icon className="h-4 w-4 mr-1" />
                     {label}
-                  </Button>
-                ))}
+                  </Button>)}
               </div>
 
               {/* Sort */}
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-48 bg-background/80 backdrop-blur-sm">
-                  <SelectValue placeholder="Sort by" />
-                </SelectTrigger>
+                
                 <SelectContent>
                   <SelectItem value="default">Default Order</SelectItem>
                   <SelectItem value="price-low">Price: Low to High</SelectItem>
@@ -140,18 +120,14 @@ const Index = () => {
         <section className="py-16 bg-gradient-to-b from-background to-muted/20">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {sortedCars.map((car) => (
-                <CarCard key={car.id} car={car} />
-              ))}
+              {sortedCars.map(car => <CarCard key={car.id} car={car} />)}
             </div>
             
-            {sortedCars.length === 0 && (
-              <div className="text-center py-16">
+            {sortedCars.length === 0 && <div className="text-center py-16">
                 <Car className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">No cars found</h3>
                 <p className="text-muted-foreground">Try adjusting your search or filters</p>
-              </div>
-            )}
+              </div>}
           </div>
         </section>
 
@@ -180,8 +156,6 @@ const Index = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
