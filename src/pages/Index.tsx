@@ -61,47 +61,20 @@ const Index = () => {
 
       <main className="flex-1">
         {/* Hero Section with Background */}
-        <section className="relative py-24 bg-gradient-to-br from-primary/30 via-accent/20 to-background overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/lovable-uploads/c77209e3-adcf-4188-a7ec-c435b42b5712.png')] bg-cover bg-center opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent" />
+        <section className="relative py-24 bg-gradient-to-br from-primary/20 via-accent/10 to-background overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/lovable-uploads/c77209e3-adcf-4188-a7ec-c435b42b5712.png')] bg-cover bg-center opacity-10" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center space-y-8">
-              <Badge variant="secondary" className="mb-4 bg-card/90 text-primary border-primary/40 backdrop-blur-md shadow-lg">
+              <Badge variant="secondary" className="mb-4 bg-primary/20 text-primary border-primary/30 backdrop-blur-sm">
                 Best Car for Rent
               </Badge>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight drop-shadow-lg">
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
                 Premium Car
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Rental</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto drop-shadow-sm">
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Discover our premium collection of vehicles. Quality guaranteed, service unmatched.
               </p>
-              
-              {/* Featured Cars Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-5xl mx-auto">
-                {mockCars.filter(car => car.isFeatured).slice(0, 3).map((car) => (
-                  <div key={car.id} className="bg-card/80 backdrop-blur-md rounded-lg border border-border/50 shadow-xl hover:shadow-2xl transition-all duration-300 group overflow-hidden">
-                    <div className="relative">
-                      <img
-                        src={car.images[0]}
-                        alt={`${car.year} ${car.make} ${car.model}`}
-                        className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <div className="absolute bottom-2 left-2 right-2 text-white">
-                        <h3 className="font-semibold text-sm">{car.year} {car.make} {car.model}</h3>
-                      </div>
-                    </div>
-                    <div className="p-4">
-                      <div className="flex gap-2 text-xs text-muted-foreground">
-                        <span>{car.fuelType}</span>
-                        <span>•</span>
-                        <span>{car.color}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
@@ -109,37 +82,7 @@ const Index = () => {
         {/* Search and Filter Section */}
         <section className="py-8 bg-card/50 backdrop-blur-sm border-b sticky top-0 z-40">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col lg:flex-row gap-6 items-center">
-              {/* Search Bar */}
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Search cars..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)} className="pl-10 bg-background/80 backdrop-blur-sm" />
-              </div>
-
-              {/* Categories */}
-              <div className="flex gap-2 flex-wrap justify-center">
-                {categories.map(({
-                id,
-                label,
-                icon: Icon
-              }) => <Button key={id} variant={selectedCategory === id ? "default" : "outline"} size="sm" onClick={() => setSelectedCategory(id)} className={`backdrop-blur-sm ${selectedCategory === id ? 'bg-primary text-primary-foreground' : 'bg-background/80 hover:bg-primary/10'}`}>
-                    <Icon className="h-4 w-4 mr-1" />
-                    {label}
-                  </Button>)}
-              </div>
-
-              {/* Sort */}
-              <Select value={sortBy} onValueChange={setSortBy}>
-                
-                <SelectContent>
-                  <SelectItem value="default">Default Order</SelectItem>
-                  <SelectItem value="price-low">Price: Low to High</SelectItem>
-                  <SelectItem value="price-high">Price: High to Low</SelectItem>
-                  <SelectItem value="year-new">Year: Newest First</SelectItem>
-                  <SelectItem value="year-old">Year: Oldest First</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+            
           </div>
         </section>
 
