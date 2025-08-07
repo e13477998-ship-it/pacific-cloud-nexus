@@ -1,38 +1,36 @@
-
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Shield, Award, Users, Heart, ArrowRight } from 'lucide-react';
-
 const About = () => {
-  const values = [
-    {
-      icon: Shield,
-      title: 'Quality Assurance',
-      description: 'Every vehicle undergoes rigorous inspection to ensure premium quality and reliability.'
-    },
-    {
-      icon: Heart,
-      title: 'Customer First',
-      description: 'Your satisfaction is our priority. We provide personalized service every step of the way.'
-    },
-    {
-      icon: Award,
-      title: 'Expert Service',
-      description: '15+ years of experience in the automotive industry with certified professionals.'
-    }
-  ];
-
-  const stats = [
-    { label: 'Years in Business', value: '15+' },
-    { label: 'Vehicles Sold', value: '10,000+' },
-    { label: 'Customer Satisfaction', value: '99%' },
-    { label: 'Service Awards', value: '25+' }
-  ];
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  const values = [{
+    icon: Shield,
+    title: 'Quality Assurance',
+    description: 'Every vehicle undergoes rigorous inspection to ensure premium quality and reliability.'
+  }, {
+    icon: Heart,
+    title: 'Customer First',
+    description: 'Your satisfaction is our priority. We provide personalized service every step of the way.'
+  }, {
+    icon: Award,
+    title: 'Expert Service',
+    description: '15+ years of experience in the automotive industry with certified professionals.'
+  }];
+  const stats = [{
+    label: 'Years in Business',
+    value: '15+'
+  }, {
+    label: 'Vehicles Sold',
+    value: '10,000+'
+  }, {
+    label: 'Customer Satisfaction',
+    value: '99%'
+  }, {
+    label: 'Service Awards',
+    value: '25+'
+  }];
+  return <div className="min-h-screen flex flex-col">
       <Header />
       
       <main className="flex-1">
@@ -72,16 +70,7 @@ const About = () => {
                     we're committed to building lasting relationships based on trust and satisfaction.
                   </p>
                 </div>
-                <div className="bg-gradient-to-br from-primary/5 to-accent/5 p-8 rounded-2xl">
-                  <div className="grid grid-cols-2 gap-6">
-                    {stats.map((stat, index) => (
-                      <div key={index} className="text-center">
-                        <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
-                        <div className="text-sm text-muted-foreground">{stat.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -98,15 +87,13 @@ const About = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {values.map((value, index) => (
-                <div key={index} className="text-center space-y-4 p-6 bg-background rounded-xl shadow-sm">
+              {values.map((value, index) => <div key={index} className="text-center space-y-4 p-6 bg-background rounded-xl shadow-sm">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
                     <value.icon className="h-8 w-8 text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold">{value.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{value.description}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -128,8 +115,6 @@ const About = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default About;
