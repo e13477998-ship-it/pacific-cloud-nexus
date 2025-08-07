@@ -34,11 +34,11 @@ const Inventory = () => {
       
       <main className="flex-1">
         {/* Page Header */}
-        <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-16">
+        <section className="bg-gradient-to-r from-primary/30 to-accent/30 py-16">
           <div className="container mx-auto px-4">
             <div className="text-center space-y-4">
-              <h1 className="text-4xl md:text-5xl font-bold">Vehicle Inventory</h1>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground">Our Cars</h1>
+              <p className="text-foreground/80 max-w-2xl mx-auto font-medium">
                 Explore our complete collection of premium vehicles
               </p>
             </div>
@@ -46,21 +46,21 @@ const Inventory = () => {
         </section>
 
         {/* Filters */}
-        <section className="py-8 bg-muted/30">
+        <section className="py-8 bg-muted/50">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
               <div className="flex gap-4 w-full md:w-auto">
                 <div className="relative flex-1 md:w-64">
-                  <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Search className="absolute left-3 top-3 h-4 w-4 text-foreground/70" />
                   <Input
                     placeholder="Search vehicles..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
+                    className="pl-10 bg-background/80 border-2 border-primary/30 focus:border-primary/60 text-foreground"
                   />
                 </div>
                 <Select value={makeFilter} onValueChange={setMakeFilter}>
-                  <SelectTrigger className="w-32">
+                  <SelectTrigger className="w-32 bg-background/80 border-2 border-primary/30 text-foreground">
                     <SelectValue placeholder="Make" />
                   </SelectTrigger>
                   <SelectContent>
@@ -71,7 +71,7 @@ const Inventory = () => {
                   </SelectContent>
                 </Select>
                 <Select value={priceFilter} onValueChange={setPriceFilter}>
-                  <SelectTrigger className="w-32">
+                  <SelectTrigger className="w-32 bg-background/80 border-2 border-primary/30 text-foreground">
                     <SelectValue placeholder="Price" />
                   </SelectTrigger>
                   <SelectContent>
@@ -82,7 +82,7 @@ const Inventory = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-sm text-foreground/80 font-semibold bg-primary/20 px-4 py-2 rounded-lg">
                 {filteredCars.length} vehicles found
               </div>
             </div>
