@@ -61,18 +61,18 @@ const Index = () => {
 
       <main className="flex-1">
         {/* Hero Section with Background */}
-        <section className="relative py-24 bg-gradient-to-br from-primary/20 via-accent/10 to-background overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/lovable-uploads/c77209e3-adcf-4188-a7ec-c435b42b5712.png')] bg-cover bg-center opacity-10" />
+        <section className="relative bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 py-20">
+          <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]"></div>
+          <div className="absolute inset-0 bg-[url('/lovable-uploads/c77209e3-adcf-4188-a7ec-c435b42b5712.png')] bg-cover bg-center opacity-30 brightness-110 contrast-105" />
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center space-y-8">
-              <Badge variant="secondary" className="mb-4 bg-primary/20 text-primary border-primary/30 backdrop-blur-sm">
+            <div className="text-center space-y-6">
+              <Badge variant="secondary" className="mb-4 bg-primary/30 text-primary border-primary/40 backdrop-blur-md shadow-lg">
                 Best Car for Rent
               </Badge>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-                Premium Car
-                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Rental</span>
+              <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+                Premium Car Rental
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-foreground/70 max-w-2xl mx-auto text-lg font-medium">
                 Discover our premium collection of vehicles. Quality guaranteed, service unmatched.
               </p>
             </div>

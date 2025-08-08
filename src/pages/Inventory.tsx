@@ -34,11 +34,14 @@ const Inventory = () => {
       
       <main className="flex-1">
         {/* Page Header */}
-        <section className="bg-gradient-to-r from-primary/30 to-accent/30 py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center space-y-4">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground">Our Cars</h1>
-              <p className="text-foreground/80 max-w-2xl mx-auto font-medium">
+        <section className="relative bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 py-20">
+          <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]"></div>
+          <div className="container mx-auto px-4 relative">
+            <div className="text-center space-y-6">
+              <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+                Our Cars
+              </h1>
+              <p className="text-foreground/70 max-w-2xl mx-auto text-lg font-medium">
                 Explore our complete collection of premium vehicles
               </p>
             </div>

@@ -34,16 +34,15 @@ const About = () => {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center space-y-6">
-              
-              <h1 className="text-4xl md:text-6xl font-bold">
-                Excellence in
-                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Automotive</span>
+        {/* Page Header */}
+        <section className="relative bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 py-20">
+          <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]"></div>
+          <div className="container mx-auto px-4 relative">
+            <div className="text-center space-y-6">
+              <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+                About Us
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed">
+              <p className="text-foreground/70 max-w-2xl mx-auto text-lg font-medium">
                 For over 15 years, V8 Wide Technologies has been your trusted partner in 
                 premium vehicle solutions, delivering unmatched quality and service.
               </p>
