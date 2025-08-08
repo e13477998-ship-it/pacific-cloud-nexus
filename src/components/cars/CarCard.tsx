@@ -54,37 +54,25 @@ const CarCard = ({ car, onViewDetails }: CarCardProps) => {
         </div>
       </div>
 
-      <CardContent className="p-5 bg-gradient-to-b from-transparent to-muted/10">
-        <div className="grid grid-cols-2 gap-4 text-sm mb-4">
-          <div className="flex items-center space-x-2 text-muted-foreground">
-            <Gauge className="h-4 w-4 text-primary/80" />
-            <span className="font-medium">{formatMileage(car.mileage)} miles</span>
-          </div>
-          <div className="flex items-center space-x-2 text-muted-foreground">
-            <Fuel className="h-4 w-4 text-primary/80" />
-            <span className="font-medium">{car.fuelType}</span>
-          </div>
-          <div className="flex items-center space-x-2 text-muted-foreground">
-            <Calendar className="h-4 w-4 text-primary/80" />
-            <span className="font-medium">{car.year}</span>
-          </div>
-          <div className="flex items-center space-x-2 text-muted-foreground">
-            <Palette className="h-4 w-4 text-primary/80" />
-            <span className="font-medium">{car.color}</span>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mt-4">
-          {car.features.slice(0, 3).map((feature, index) => (
-            <Badge key={index} variant="outline" className="text-xs bg-background/60 border-primary/20 hover:bg-primary/10 transition-colors">
-              {feature}
+      <CardContent className="p-4">
+        <div className="space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="text-2xl font-bold text-primary">{formatPrice(car.price)}</span>
+            <Badge variant="outline" className="text-xs">
+              {car.year}
             </Badge>
-          ))}
-          {car.features.length > 3 && (
-            <Badge variant="outline" className="text-xs bg-background/60 border-primary/20">
-              +{car.features.length - 3} more
-            </Badge>
-          )}
+          </div>
+          
+          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <div className="flex items-center gap-1">
+              <Gauge className="h-4 w-4" />
+              <span>{formatMileage(car.mileage)} mi</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Fuel className="h-4 w-4" />
+              <span>{car.fuelType}</span>
+            </div>
+          </div>
         </div>
       </CardContent>
 

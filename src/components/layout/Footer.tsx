@@ -55,7 +55,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-white/10 pt-8 mt-8 text-center text-sm text-white/50">
-          <p>&copy; 2024 Pacifique Drive Hub. All rights reserved.</p>
+          <p>&copy; 2025 Pacifique Drive Hub. All rights reserved.</p>
         </div>
       </div>
     </footer>;
