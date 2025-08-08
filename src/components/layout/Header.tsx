@@ -45,7 +45,7 @@ const Header = () => {
             />
             <div className="hidden sm:block">
               <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Pacifique Drive Hub
+                V8 Wide Tech
               </span>
             </div>
           </Link>
@@ -83,12 +83,6 @@ const Header = () => {
               <Phone className="h-4 w-4 mr-2" />
               Call Now
             </Button>
-            <Button 
-              size="sm"
-              className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90"
-            >
-              Get Quote
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -124,11 +118,6 @@ const Header = () => {
                   <Button variant="outline" size="sm" className="w-full justify-start">
                     <Phone className="h-4 w-4 mr-2" />
                     Call Now
-                  </Button>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Button size="sm" className="w-full justify-start bg-gradient-to-r from-primary to-accent">
-                    Get Quote
                   </Button>
                 </DropdownMenuItem>
               </div>

@@ -107,9 +107,6 @@ const Index = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="text-sm text-foreground/80 font-semibold bg-primary/20 px-4 py-2 rounded-lg">
-                {sortedCars.length} vehicles found
-              </div>
             </div>
           </div>
         </section>
