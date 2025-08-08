@@ -27,7 +27,7 @@ const Footer = () => {
             <h4 className="text-sm font-semibold text-white">Services</h4>
             <ul className="space-y-2 text-sm text-white/70">
               <li>Vehicle Sales</li>
-              <li>Auto Financing</li>
+              
               <li>Trade-In Appraisal</li>
               <li>Extended Warranties</li>
               <li>Vehicle Inspection</li>
@@ -55,7 +55,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-white/10 pt-8 mt-8 text-center text-sm text-white/50">
-          <p>&copy; 2025 Pacifique Drive Hub. All rights reserved.</p>
+          <p>&copy; 2024 Pacifique Drive Hub. All rights reserved.</p>
         </div>
       </div>
     </footer>;
