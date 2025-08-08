@@ -10,14 +10,18 @@ import { Car, Shield, Users, Search, MapPin, Phone, Mail } from 'lucide-react';
 import { useState } from 'react';
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [makeFilter, setMakeFilter] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('default');
 
-  // Filter cars based on search and category
+  const uniqueMakes = Array.from(new Set(mockCars.map(car => car.make)));
+
+  // Filter cars based on search, make, and category
   const filteredCars = mockCars.filter(car => {
     const matchesSearch = car.make.toLowerCase().includes(searchTerm.toLowerCase()) || car.model.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesMake = makeFilter === 'all' || car.make === makeFilter;
     const matchesCategory = selectedCategory === 'all' || selectedCategory === 'featured' && car.isFeatured || selectedCategory === 'sedan' && car.bodyType === 'Sedan' || selectedCategory === 'suv' && car.bodyType === 'SUV' || selectedCategory === 'electric' && car.fuelType === 'Electric';
-    return matchesSearch && matchesCategory;
+    return matchesSearch && matchesMake && matchesCategory;
   });
 
   // Sort cars
@@ -78,9 +82,35 @@ const Index = () => {
         </section>
 
         {/* Search and Filter Section */}
-        <section className="py-8 bg-card/50 backdrop-blur-sm border-b sticky top-0 z-40">
+        <section className="py-8 bg-muted/50">
           <div className="container mx-auto px-4">
-            
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+              <div className="flex gap-4 w-full md:w-auto">
+                <div className="relative flex-1 md:w-64">
+                  <Search className="absolute left-3 top-3 h-4 w-4 text-foreground/70" />
+                  <Input
+                    placeholder="Search vehicles..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 bg-background/80 border-2 border-primary/30 focus:border-primary/60 text-foreground"
+                  />
+                </div>
+                <Select value={makeFilter} onValueChange={setMakeFilter}>
+                  <SelectTrigger className="w-32 bg-background/80 border-2 border-primary/30 text-foreground">
+                    <SelectValue placeholder="Make" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Makes</SelectItem>
+                    {uniqueMakes.map(make => (
+                      <SelectItem key={make} value={make}>{make}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="text-sm text-foreground/80 font-semibold bg-primary/20 px-4 py-2 rounded-lg">
+                {sortedCars.length} vehicles found
+              </div>
+            </div>
           </div>
         </section>
 
