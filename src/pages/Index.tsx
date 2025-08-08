@@ -66,9 +66,7 @@ const Index = () => {
           <div className="absolute inset-0 bg-[url('/lovable-uploads/c77209e3-adcf-4188-a7ec-c435b42b5712.png')] bg-cover bg-center opacity-30 brightness-110 contrast-105" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center space-y-6">
-              <Badge variant="secondary" className="mb-4 bg-primary/30 text-primary border-primary/40 backdrop-blur-md shadow-lg">
-                Best Car for Rent
-              </Badge>
+              
               <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
                 Premium Car Rental
               </h1>
